@@ -1,1 +1,1 @@
-hfhfhfhf
+g++ graph.cpp -ISFML -lsfml-graphics -lsfml-window -lsfml-system -o fzar.o
