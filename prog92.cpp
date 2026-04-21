@@ -8,15 +8,15 @@ struct student
     char surname[30];
     int grade[4];
     student *next, *prev;
-} *head, *p, *tail;
+} *head, *p, *tail, *t1, *t2;
 
 int main(int argc, char const *argv[])
 {
     int flag;
     srand(time(0));
-    char surnames[5][30] = {"Abduraimova ", "Illarionov  ", "Denezhkina  ", "Kozik       ", "Milkevich   "};
+    char surnames[5][30] = {"Abduraimova", "Illarionov", "Denezhkina", "Kozik", "Milkevich"};
     head = tail = new student;
-    tail->next = NULL;
+    tail->next = tail->prev = NULL;
     for (int i = 0; i < 5; i++)
     {
         p = new student;
@@ -25,25 +25,42 @@ int main(int argc, char const *argv[])
         {
             p->grade[j] = rand() % 4 + 2;
         }
+        p->prev = tail;
+        p->next = NULL;
         tail->next = p;
         tail = p;
     }
-    do
+    for (p = head->next; p; p = p->next)
     {
-        flag = 0;
-        for (p = head; p->next->next; p = p->next)
+        printf("%s  ", p->surname);
+        for (int j = 0; j < 4; j++)
         {
-            t1 = p->next;
-            t2 = t1->next;
-            if (strcmp(t1->surname, t2->surname) > 0)
+            printf("%d ", p->grade[j]);
+        }
+        printf("\n");
+    }
+    for (p = head; p; p = p->next)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (p->grade[i] == 2)
             {
-                t1->next = t2;
-                t2
-                    flag = 1;
+                if (p->next)
+                {
+                    p->next->prev = p->prev;
+                    p->prev->next = p->next;
+                    delete (p);
+                }
+                else
+                {
+                    p->prev->next = p->next;
+                    delete (p);
+                }
+                break;
             }
         }
-    } while (flag);
-    tail->next = NULL;
+    }
+    printf("\n");
     for (p = head->next; p; p = p->next)
     {
         printf("%s  ", p->surname);
