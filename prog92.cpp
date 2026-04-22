@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
     }
     for (p = head->next; p; p = p->next)
     {
-        printf("%s  ", p->surname);
+        printf("%12s  ", p->surname);
         for (int j = 0; j < 4; j++)
         {
             printf("%d ", p->grade[j]);
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
     printf("\n");
     for (p = head->next; p; p = p->next)
     {
-        printf("%s  ", p->surname);
+        printf("%12s  ", p->surname);
         for (int j = 0; j < 4; j++)
         {
             printf("%d ", p->grade[j]);

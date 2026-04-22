@@ -28,6 +28,16 @@ int main(int argc, char const *argv[])
         tail->next = p;
         tail = p;
     }
+    for (p = head->next; p; p = p->next)
+    {
+        printf("%s  ", p->surname);
+        for (int j = 0; j < 4; j++)
+        {
+            printf("%d ", p->grade[j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
     do
     {
         flag = 0;
@@ -37,9 +47,10 @@ int main(int argc, char const *argv[])
             t2 = t1->next;
             if (strcmp(t1->surname, t2->surname) > 0)
             {
-                t1->next = t2;
-                t2
-                    flag = 1;
+                p->next=t2;
+                t1->next=t2->next;
+                t2->next=t1;
+                flag=1;
             }
         }
     } while (flag);

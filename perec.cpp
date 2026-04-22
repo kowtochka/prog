@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #define M 13 // Размер хеш таблицы
 #define N 10 // Количество элементов
 struct spis
@@ -48,12 +49,13 @@ int find_hash_table(int x, int &collision)
 
 int main()
 {
+    srand(time(0));
     int i, hash, d, collision;
     spis *p;
     printf("    N data   hash\n");
     for (i = 0; i < N; i++)
     {
-        data[i] = rand() % 30000 + 1;
+        data[i] = rand() % 300 + 1;
         hash = add_hash_table(data[i]);
         printf("%5d %5d %5d\n", i, data[i], hash);
     }

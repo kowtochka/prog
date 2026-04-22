@@ -58,7 +58,7 @@ void printup(student *t)
     if (!t)
         return;
     printup(t->l);
-    printf("%15s   ", t->surname);
+    printf("%12s   ", t->surname);
     for (int j = 0; j < 4; j++)
     {
         printf("%d ", t->grade[j]);
@@ -71,7 +71,7 @@ void printdown(student *t)
     if (!t)
         return;
     printdown(t->r);
-    printf("%15s   ", t->surname);
+    printf("%12s   ", t->surname);
     for (int j = 0; j < 4; j++)
     {
         printf("%d ", t->grade[j]);
