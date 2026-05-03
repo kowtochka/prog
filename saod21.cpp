@@ -6,8 +6,18 @@
 struct list
 {
     list *next;
-    int data;
-} *head1, *p, *tail2, *head2;
+    union
+    {
+        int data;
+        unsigned char Digit[sizeof(int)];
+    };
+
+} *p, *S;
+struct queue
+{
+    list *head;
+    list *tail;
+} *t;
 
 int n = 10;
 
@@ -24,16 +34,6 @@ int Ser(list *h);
 void DelList(list *&h);
 void PrintRf(list *h);
 void PrintRfBack(list *h);
-
-int main(int argc, char const *argv[])
-{
-    FillUpQueue(head2, tail2);
-    PrintRfBack(head2);
-    printf("\n");
-    DelList(head2);
-    Print(head2);
-    return 0;
-}
 
 void FillUpStack(list *&h)
 {
@@ -67,22 +67,22 @@ void FillRandStack(list *&h)
     }
 }
 
-void FillUpQueue(list *&h, list *&t)
+void FillUpQueue(queue *&t)
 {
     for (int i = 1; i <= n; i++)
     {
         p = new list;
         p->data = i;
         p->next = NULL;
-        if (h != NULL)
+        if (t->head != NULL)
         {
-            t->next = p;
+            t->tail->next = p;
         }
         else
         {
-            h = p;
+            t->head = p;
         }
-        t = p;
+        t->tail = p;
     }
 }
 void FillDownQueue(list *&h, list *&t)
