@@ -38,6 +38,25 @@ int main(int argc, char const *argv[])
         printf("Подстрока не найдена\n%d", start1);
     printf("Кол-во посимволных сравнений: %d\n", C);
 
+    printf("\n");
+    printf("\n");
+    printf("|////////|////////////|////////|//////|\n");
+    printf("|   M    |Трудоёмкость| Коэф.  | Вход |\n");
+    printf("|////////|////////////|////////|//////|\n");
+    srand(time(0));
+    for (int m = 1; m < 50; m++)
+    {
+
+        int start = rand() % (291 - m);
+        char strRandom[m];
+        strncpy(strRandom, texts + start, m);
+        strRandom[m] = '\0';
+        int st = Carp(strRandom, texts);
+        printf("|%8d|%12d|   %.3f|%6d|\n", m, C, C / float(m), st);
+    }
+    printf("|////////|////////////|////////|//////|\n");
+    printf("\n");
+
     return 0;
 }
 
@@ -66,7 +85,7 @@ int SelectSearch(char *str, char *text)
 
 int hash(char *str, int start, int m)
 {
-    int k = 19;
+    int k = 7;
     int h = 0;
     for (int i = start; i < m + start; i++)
     {
